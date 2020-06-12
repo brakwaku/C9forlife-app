@@ -1,0 +1,47 @@
+<nav class="navbar navbar-dark bg-primary navbar-expand-xl|lg|md|sm">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/"><img class="logo" src="/images/C9forlifeLogo.png" width="50" height="50"
+        class="d-inline-block align-top" alt="MAD logo"></a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="navbar-collapse collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="<%= path === '/' ? 'active' : ''%> nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="<%= path === '/about' ? 'active' : ''%> nav-item"><a class="nav-link" href="/mad/about">About</a>
+        </li>
+        <li class="<%= path === '/contact' ? 'active' : ''%> nav-item"><a class="nav-link"
+            href="/mad/contact">Contact</a></li>
+        <li class="<%= path === '/activities' ? 'active' : ''%> nav-item"><a class="nav-link"
+            href="/mad/activities">Activities</a>
+        </li>
+        <li class="<%= path === '/motivation' ? 'active' : ''%> nav-item"><a class="nav-link"
+            href="/mad/motivation">Motivation</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="<%= path === '/login' ? 'active' : '' %> nav-link" href="/auth/login"><span
+              class="glyphicon glyphicon-log-in"></span> Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="<%= path === '/signup' ? 'active' : '' %> nav-link" href="/auth/signup"><span
+              class="glyphicon glyphicon-user"></span> Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <form action="/auth/logout" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn btn-sm navbar-btn" type="submit">Logout</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
