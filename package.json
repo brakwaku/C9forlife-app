@@ -29,5 +29,19 @@
     "nodemailer-sendgrid-transport": "^0.2.0",
     "nodemon": "^2.0.4",
     "sequelize": "^5.21.12"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brakwaku/C9forlife-app.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "bugs": {
+    "url": "https://github.com/brakwaku/C9forlife-app/issues"
+  },
+  "homepage": "https://github.com/brakwaku/C9forlife-app#readme"
 }

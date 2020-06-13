@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('../../includes/header.ejs') %>
+    <link rel="stylesheet" href="/stylesheets/forms.css">
+    <link rel="stylesheet" href="/stylesheets/auth.css">
+</head>
+
+<body>
+    <%- include('../../includes/nav.ejs') %>
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="secure-login">Secure signup</h3>
+                </div>
+                <div class="card-body">
+                    <% if (errorMessage) { %>
+                    <div class="user-message user-message--error"><%= errorMessage %></div>
+                    <% } %>
+                    <form action="/auth/signup" method="POST">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="First Name" type="text" name="firstName"
+                                id="firstName" value="<%= oldInput.firstName %>" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Last Name" type="text" name="lastName"
+                                id="lastName" value="<%= oldInput.lastName %>" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input placeholder="Email address" class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %> form-control
+                    type=" email" name="email" id="email" value="<%= oldInput.email %>" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input placeholder="Password"
+                                class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %> form-control"
+                                type="password" name="password" id="password" value="<%= oldInput.password %>" required>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input placeholder="Confirm Password"
+                                class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %> form-control"
+                                type="password" name="confirmPassword" id="confirmPassword"
+                                value="<%= oldInput.confirmPassword %>" required>
+                        </div>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <div class="form-group">
+                            <button class="btn float-right signup_btn" type="submit">Signup</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../includes/end.ejs') %>

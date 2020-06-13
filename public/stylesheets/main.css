@@ -1,36 +1,25 @@
 .jumbotron {
-  background-image: url('/images/lowangle.jpg');
+  background-image: url('/images/2ix.jpg');
   /* Full height */
   height: 100%;
-
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
-  padding-bottom: 80px; 
+  padding-bottom: 80px;
 }
 
-.jumbotron .btn-primary {
-  background: #845ac7;
-  border-color: #845ac7; 
-}
-
-.jumbotron .btn-primary:hover {
-  background: #7646c1; 
-}
-  
 .jumbotron p {
   color: #d9ccee;
   max-width: 75%;
-  margin: 1em auto 2em; 
-}
-  
-.navbar + .jumbotron {
-  margin-top: -20px; 
+  margin: 1em auto 2em;
 }
 
-  
+.navbar+.jumbotron {
+  margin-top: -20px;
+}
+
 .jumbotron .lang-logo {
   display: block;
   background: #B01302;
@@ -39,10 +28,11 @@
   width: 100px;
   height: 100px;
   margin: auto;
-  border: 2px solid white; 
+  border: 2px solid white;
 }
+
 .jumbotron .lang-logo img {
-  max-width: 100%; 
+  max-width: 100%;
 }
 
 body {
@@ -63,7 +53,7 @@ body {
   padding: 20px;
 }
 
-.btn {
+.bttn {
   font: inherit;
   border: 1px solid #1165BD;
   color: #1165BD;
@@ -72,8 +62,7 @@ body {
   cursor: pointer;
 }
 
-.btn:hover,
-.btn:active {
+.bttn:hover, .bttn:active {
   background-color: #1165BD;
   color: white;
 }
@@ -89,5 +78,30 @@ body {
 }
 
 .profile-image {
+  display: inline;
+  margin: 0 auto;
+  margin-left: -25%;
+  height: 100%;
+  width: auto;
+}
+
+.image-cropper {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  overflow: hidden;
   border-radius: 50%;
+}
+
+.about-author {
+  display: flex;
+}
+
+.author-text {
+  width: 80%;
+  margin-left: 20px;
+}
+
+.main-header-user {
+  color: white;
 }

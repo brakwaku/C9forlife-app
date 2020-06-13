@@ -19,14 +19,18 @@
         </li>
         <li class="<%= path === '/contact' ? 'active' : ''%> nav-item"><a class="nav-link"
             href="/mad/contact">Contact</a></li>
+        <% if (isAuthenticated) { %>
         <li class="<%= path === '/activities' ? 'active' : ''%> nav-item"><a class="nav-link"
             href="/mad/activities">Activities</a>
         </li>
         <li class="<%= path === '/motivation' ? 'active' : ''%> nav-item"><a class="nav-link"
             href="/mad/motivation">Motivation</a>
         </li>
+        <li class="main-header-user">Hi <%= user.name %></li>
+        <% } %>
       </ul>
       <ul class="nav navbar-nav">
+        <% if (!isAuthenticated) { %>
         <li class="nav-item">
           <a class="<%= path === '/login' ? 'active' : '' %> nav-link" href="/auth/login"><span
               class="glyphicon glyphicon-log-in"></span> Login</a>
@@ -35,12 +39,14 @@
           <a class="<%= path === '/signup' ? 'active' : '' %> nav-link" href="/auth/signup"><span
               class="glyphicon glyphicon-user"></span> Sign Up</a>
         </li>
+        <% } else { %>
         <li class="nav-item">
           <form action="/auth/logout" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <button class="btn btn-sm navbar-btn" type="submit">Logout</button>
+            <button class="btn bttn btn-sm navbar-btn" type="submit">Logout</button>
           </form>
         </li>
+        <% } %>
       </ul>
     </div>
   </div>
