@@ -2,8 +2,9 @@
   background-image: url('/images/2ix.jpg');
   background-attachment: fixed;
   /* Full height */
-  height: 100%;
+  height: auto;
   /* Center and scale the image nicely */
+  width: 100;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,7 +13,7 @@
 }
 
 .jumbotron p {
-  color: #d9ccee;
+  /* color: #d9ccee; */
   max-width: 75%;
   margin: 1em auto 2em;
 }
@@ -40,18 +41,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-}
-
-.product-item {
-  width: 30rem;
-  max-width: 95%;
-  margin: 20px;
-}
-
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px;
+  background-color: rgb(233, 233, 233);
 }
 
 .bttn {
@@ -92,6 +82,7 @@ body {
 
 .about-author {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .author-text {
@@ -107,4 +98,20 @@ body {
   font-size: 10vw;
   font-weight: bold;
   text-align: right;
+}
+
+#front-quote {
+  text-align: right;
+  font-size: 1.3em;
+}
+
+.card {
+  background-color: rgba(144, 238, 144, 0.349);
+  outline: none;
+  border-radius: 10px;
+  color: white;
+}
+
+.get-help {
+  margin-left: 68vw;
 }
