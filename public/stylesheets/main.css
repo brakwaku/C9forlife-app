@@ -1,5 +1,6 @@
-.jumbotron {
+.index-page {
   background-image: url('/images/2ix.jpg');
+  background-attachment: fixed;
   /* Full height */
   height: 100%;
   /* Center and scale the image nicely */
@@ -55,11 +56,11 @@ body {
 
 .bttn {
   font: inherit;
-  border: 1px solid #1165BD;
-  color: #1165BD;
-  background: white;
+  border: 1px solid #128fa5;
   border-radius: 3px;
   cursor: pointer;
+  background-color: #55bacc;
+  color: #c8dde0;
 }
 
 .bttn:hover, .bttn:active {
@@ -71,10 +72,6 @@ body {
   text-align: center;
   color: #1165BD;
   font-size: 9rem;
-}
-
-#here-link {
-  color: #ffeb3b;
 }
 
 .profile-image {
@@ -104,4 +101,10 @@ body {
 
 .main-header-user {
   color: white;
+}
+
+#happytag {
+  font-size: 10vw;
+  font-weight: bold;
+  text-align: right;
 }

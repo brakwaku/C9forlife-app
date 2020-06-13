@@ -23,21 +23,21 @@
                     <form action="/auth/signup" method="POST">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user-plus"></i></span>
                             </div>
                             <input class="form-control" placeholder="First Name" type="text" name="firstName"
                                 id="firstName" value="<%= oldInput.firstName %>" required>
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
                             </div>
                             <input class="form-control" placeholder="Last Name" type="text" name="lastName"
                                 id="lastName" value="<%= oldInput.lastName %>" required>
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                             </div>
                             <input placeholder="Email address" class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %> form-control
                     type=" email" name="email" id="email" value="<%= oldInput.email %>" required>

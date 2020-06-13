@@ -1,23 +1,21 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-info sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="#"><img class="logo" src="/images/C9forlifeLogo.png" width="50" height="50"
+    <a class="navbar-brand" href="/"><img class="logo" src="/images/C9forlifeLogo.png" width="50" height="50"
         class="d-inline-block align-top" alt="MAD logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link <%= path === '/' ? 'active' : ''%>" href="/">Home <span
             class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link <%= path === '/' ? 'active' : ''%>" href="/mad/about">About</a>
+        <a class="nav-item nav-link <%= path === '/about' ? 'active' : ''%>" href="/mad/about">About</a>
         <a class="nav-item nav-link <%= path === '/contact' ? 'active' : ''%>" href="/mad/contact">Contact</a>
         <% if (isAuthenticated) { %>
         <a class="nav-item nav-link <%= path === '/activities' ? 'active' : ''%>" href="/mad/activities">Activities</a>
         <a class="nav-item nav-link <%= path === '/motivation' ? 'active' : ''%>" href="/mad/motivation">Motivation</a>
-        <ul class="nav-item">
-          <li class="main-header-user">Hi <%= user.name %></li>
-        </ul>
+        <a class="main-header-user nav-link">Hi <%= user.name %></a>
         <% } %>
         <% if (!isAuthenticated) { %>
         <a class="nav-item nav-link <%= path === '/login' ? 'active' : '' %>" href="/auth/login"><span
@@ -25,7 +23,7 @@
         <a class="nav-item nav-link <%= path === '/signup' ? 'active' : '' %>" href="/auth/signup"><span
             class="glyphicon glyphicon-user"></span> Sign Up</a>
         <% } else { %>
-        <a class="nav-item nav-link" href="#">
+        <a class="nav-item" href="#">
           <form action="/auth/logout" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <button class="btn bttn btn-sm navbar-btn" type="submit">Logout</button>
