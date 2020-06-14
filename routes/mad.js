@@ -6,7 +6,7 @@ const madController = require('../controllers/mad');
 
 const router = express.Router();
 
-router.get('/about', madController.getAbout)
+router.get('/dashboard', madController.getDashboard)
 router.get('/contact', madController.getContact)
 router.get('/activities', madController.getActivities)
 router.get('/motivation', madController.getMotivation)

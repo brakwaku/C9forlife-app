@@ -1,10 +1,10 @@
 // const Product = require('../models/product');
 // const Order = require('../models/order');
 
-exports.getAbout = (req, res, next) => {
-    return res.render('pages/mad/about-us', {
-        title: 'About Us',
-        path: '/about'
+exports.getDashboard = (req, res, next) => {
+    return res.render('pages/mad/dashboard', {
+        title: 'Dashboard',
+        path: '/dashboard'
     });
 };
 

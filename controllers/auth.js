@@ -147,6 +147,8 @@ exports.postSignup = (req, res, next) => {
     .hash(password, 12)
     .then(hashedPassword => {
       const user = new User({
+        firstName: firstName,
+        lastName: lastName,
         name: firstName + ' ' + lastName,
         email: email,
         password: hashedPassword,
