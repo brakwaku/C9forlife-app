@@ -28,7 +28,7 @@
                     <form action="/auth/login" method="POST">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                             </div>
                             <input class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %> form-control"
                             placeholder="Email address" type="email" name="email" id="email" value="<%= oldInput.email %>">

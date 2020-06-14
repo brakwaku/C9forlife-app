@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="/"><img class="logo" src="/images/C9forlifeLogo.png" width="50" height="50"
         class="d-inline-block align-top" alt="MAD logo"></a>
         <% if (isAuthenticated) { %>
-          <a class="main-header-user nav-link">Hi <%= user.firstName %></a>
+          <a class="main-header-user nav-link">HI <%= user.firstName.toUpperCase() %><span style="font-size:20px"> &#128540;</span></a>
         <% } %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,24 +11,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link <%= path === '/' ? 'active' : ''%>" href="/">Home <span
+        <a class="nav-item nav-link <%= path === '/' ? 'active' : ''%>" href="/">HOME <span
             class="sr-only">(current)</span></a>
         <% if (isAuthenticated) { %>
-        <a class="nav-item nav-link <%= path === '/dashboard' ? 'active' : ''%>" href="/mad/dashboard">Dashboard</a>
-        <a class="nav-item nav-link <%= path === '/activities' ? 'active' : ''%>" href="/mad/activities">Activities</a>
-        <a class="nav-item nav-link <%= path === '/motivation' ? 'active' : ''%>" href="/mad/motivation">Motivation</a>
+        <a class="nav-item nav-link <%= path === '/dashboard' ? 'active' : ''%>" href="/mad/dashboard">DASHBOARD</a>
+        <a class="nav-item nav-link <%= path === '/activities' ? 'active' : ''%>" href="/mad/activities">ACTIVITIES</a>
+        <a class="nav-item nav-link <%= path === '/motivation' ? 'active' : ''%>" href="/mad/motivation">MOTIVATION</a>
         <% } %>
         <% if (!isAuthenticated) { %>
-        <a class="nav-item nav-link <%= path === '/contact' ? 'active' : ''%>" href="/mad/contact">Contact</a>
+        <a class="nav-item nav-link <%= path === '/contact' ? 'active' : ''%>" href="/mad/contact">CONTACT</a>
         <a class="nav-item nav-link <%= path === '/login' ? 'active' : '' %>" href="/auth/login"><span
-            class="glyphicon glyphicon-log-in"></span> Login</a>
+            class="glyphicon glyphicon-log-in"></span> LOGIN</a>
         <a class="nav-item nav-link <%= path === '/signup' ? 'active' : '' %>" href="/auth/signup"><span
-            class="glyphicon glyphicon-user"></span> Sign Up</a>
+            class="glyphicon glyphicon-user"></span> SIGN UP</a>
         <% } else { %>
         <a class="nav-item" href="#">
           <form action="/auth/logout" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <button class="btn bttn btn-sm navbar-btn" type="submit">Logout</button>
+            <button class="btn bttn btn-sm navbar-btn" type="submit">LOGOUT</button>
           </form>
         </a>
         <% } %>
