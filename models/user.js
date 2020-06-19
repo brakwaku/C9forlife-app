@@ -23,53 +23,57 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  cart: {
+  role: {
+    type: String,
+    required: true
+  },
+  bucket: {
     items: [
       {
-        productId: {
+        activityId: {
           type: Schema.Types.ObjectId,
-          ref: 'Product',
+          ref: 'Activity',
           required: true
         },
-        quantity: { type: Number, required: true }
+        // quantity: { type: Number, required: true }
       }
     ]
   }
 });
 
-userSchema.methods.addToCart = function (product) {
-  const cartProductIndex = this.cart.items.findIndex(cp => {
-    return cp.productId.toString() === product._id.toString();
+userSchema.methods.addToBucket = function (activity) {
+  const bucketActivityIndex = this.bucket.items.findIndex(cp => {
+    return cp.activityId.toString() === activity._id.toString();
   });
   let newQuantity = 1;
-  const updatedCartItems = [...this.cart.items];
+  const updatedBucketItems = [...this.bucket.items];
 
-  if (cartProductIndex >= 0) {
-    newQuantity = this.cart.items[cartProductIndex].quantity + 1;
-    updatedCartItems[cartProductIndex].quantity = newQuantity;
+  if (bucketActivityIndex >= 0) {
+    newQuantity = this.bucket.items[bucketActivityIndex].quantity + 1;
+    updatedBucketItems[bucketActivityIndex].quantity = newQuantity;
   } else {
-    updatedCartItems.push({
-      productId: product._id,
+    updatedBucketItems.push({
+      activityId: activity._id,
       quantity: newQuantity
     });
   }
-  const updatedCart = {
-    items: updatedCartItems
+  const updatedBucket = {
+    items: updatedBucketItems
   };
-  this.cart = updatedCart;
+  this.bucket = updatedBucket;
   return this.save();
 };
 
-userSchema.methods.removeFromCart = function (productId) {
-  const updatedCartItems = this.cart.items.filter(item => {
-    return item.productId.toString() !== productId.toString();
+userSchema.methods.removeFromBucket = function (activityId) {
+  const updatedBucketItems = this.bucket.items.filter(item => {
+    return item.activityId.toString() !== activityId.toString();
   });
-  this.cart.items = updatedCartItems;
+  this.bucket.items = updatedBucketItems;
   return this.save();
 };
 
-userSchema.methods.clearCart = function() {
-  this.cart = { items: [] };
+userSchema.methods.clearBucket = function () {
+  this.bucket = { items: [] };
   return this.save();
 };
 

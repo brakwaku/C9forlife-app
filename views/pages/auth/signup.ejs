@@ -59,6 +59,13 @@
                                 type="password" name="confirmPassword" id="confirmPassword"
                                 value="<%= oldInput.confirmPassword %>" required>
                         </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            </div>
+                            <input placeholder="Magic word" class="form-control"
+                                type="text" name="roleNumber" id="roleNumber">
+                        </div>
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <div class="form-group">
                             <button class="btn float-right login_btn" type="submit">Signup</button>

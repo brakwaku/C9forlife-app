@@ -125,6 +125,15 @@ exports.postSignup = (req, res, next) => {
   const { firstName, lastName } = req.body;
   const email = req.body.email;
   const password = req.body.password;
+  const roleNumber = req.body.roleNumber;
+  let role;
+
+  //Logic to set roles
+  if (roleNumber === 'madds') {
+    role = 'admin';
+  } else {
+    role = 'member';
+  }
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -152,7 +161,8 @@ exports.postSignup = (req, res, next) => {
         name: firstName + ' ' + lastName,
         email: email,
         password: hashedPassword,
-        cart: { items: [] }
+        role: role,
+        bucket: { items: [] }
       });
       return user.save();
     })
@@ -160,7 +170,7 @@ exports.postSignup = (req, res, next) => {
       res.redirect('login');
       return transporter.sendMail({
         to: email,
-        from: 'app15004@byui.edu',
+        from: 'mad@app.com',
         subject: 'Signup succeeded!',
         html: '<h1>Hurray!!! <br>You successfully signed up. Congratulations!</h1>'
       });
@@ -214,7 +224,7 @@ exports.postReset = (req, res, next) => {
         res.redirect('/');
         transporter.sendMail({
           to: req.body.email,
-          from: 'app15004@byui.edu',
+          from: 'mad@app.com',
           subject: 'Password reset',
           html: `
             <p>You requested a password reset</p>
@@ -285,3 +295,7 @@ exports.postNewPassword = (req, res, next) => {
       return next(error);
     });
 };
+
+// exports.isAdmin = (req, res, next) => {
+//   const role = req.user.role
+// }
