@@ -183,6 +183,16 @@ Dashboard styling
   background-color: #959595;
 }
 
+.ble {
+  font-size: 8vw;
+  font-weight: bolder;
+  color: rgb(230, 158, 23);
+}
+
+.so {
+  color: orange;
+}
+
 .dash-m {
   margin-top: -20px;
 }
@@ -251,4 +261,40 @@ Modal Styling
 
 .modal-header, .modal-body {
   padding: 15px 25px;
+}
+
+/**************************************
+* Admin activities Styling
+****************************************/
+.bod {
+  background-image: url('/images/loginii.jpg');
+}
+
+/**************************************
+* User activities Styling
+****************************************/
+.actBack {
+  background-image: url('/images/loginii.jpg');
+  background-attachment: fixed;
+  /* Full height */
+  height: auto;
+  /* Center and scale the image nicely */
+  width: 100;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding-bottom: 80px;
+}
+
+.activity-title {
+  font-weight: bold;
+}
+
+.add-to-bucket {
+  color: #1165BD;
+}
+
+.actDesc {
+  color: #2d2d30;
 }

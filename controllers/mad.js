@@ -1,17 +1,18 @@
 const Activity = require('../models/activity');
-const ToDo = require('../models/toDo');
+const User = require('../models/user');
+var nodemailer = require('nodemailer');
 
 
 exports.getContact = (req, res, next) => {
     return res.render('pages/mad/contact', {
-        title: 'Contact',
+        title: 'C9FL | Contact',
         path: '/contact'
     });
 };
 
 exports.getMotivation = (req, res, next) => {
     return res.render('pages/mad/motivation', {
-        title: 'Motivation',
+        title: 'C9FL | Motivation',
         path: '/motivation'
     });
 };
@@ -22,7 +23,7 @@ exports.getActivities = (req, res, next) => {
             console.log('Activitiess: ' + activities);
             res.render('pages/mad/activities', {
                 acts: activities,
-                title: 'Activities',
+                title: 'C9FL | Activities',
                 path: '/activities'
             });
         })
@@ -39,7 +40,7 @@ exports.getActivity = (req, res, next) => {
         .then(activity => {
             res.render('pages/mad/activity-detail', {
                 activity: activity,
-                title: activity.title,
+                title: 'C9FL | ' + activity.title,
                 path: '/activities'
             });
         })
@@ -54,6 +55,7 @@ exports.getIndex = (req, res, next) => {
     Activity.find()
         .then(activities => {
             res.render('pages/mad/activities', {
+                title: 'C9FL | Activities',
                 acts: activities,
                 path: '/activities'
             });
@@ -64,25 +66,6 @@ exports.getIndex = (req, res, next) => {
             return next(error);
         });
 };
-
-// exports.getBucket = (req, res, next) => {
-//     req.user
-//         .populate('bucket.items.activityId')
-//         .execPopulate()
-//         .then(user => {
-//             const activities = user.bucket.items;
-//             res.render('pages/mad/dashboard', {
-//                 path: '/dashboard',
-//                 title: 'Your Dashboard',
-//                 activities: activities
-//             });
-//         })
-//         .catch(err => {
-//             const error = new Error(err);
-//             error.httpStatusCode = 500;
-//             return next(error);
-//         });
-// };
 
 exports.postBucket = (req, res, next) => {
     const actId = req.body.activityId;
@@ -133,19 +116,16 @@ exports.postToDoDeleteActivity = (req, res, next) => {
 exports.getDashboard = (req, res, next) => {
     req.user
         .populate('bucket.items.activityId')
+        .populate('toDoList.toDos.toDoId')
         .execPopulate()
         .then(user => {
             const activities = user.bucket.items;
-            ToDo.find({ 'user.userId': req.user._id })
-                .populate('activities')
-                .then(toDos => {
-                    res.render('pages/mad/dashboard', {
-                        path: '/dashboard',
-                        title: 'Dashboard',
-                        toDos: toDos,
-                        activities: activities
-                    });
-                })
+            res.render('pages/mad/dashboard', {
+                path: '/dashboard',
+                title: 'C9FL | Dashboard',
+                toDos: user.toDoList.toDos,
+                activities: activities
+            });
         })
         .catch(err => {
             const error = new Error(err);
@@ -155,24 +135,10 @@ exports.getDashboard = (req, res, next) => {
 };
 
 exports.postToDo = (req, res, next) => {
-    req.user
-        .populate('bucket.items.activityId')
-        .execPopulate()
-        .then(user => {
-            const activities = user.bucket.items.map(i => {
-                return i.activityId._doc;
-            });
-            const toDo = new ToDo({
-                user: {
-                    name: req.user.name,
-                    userId: req.user
-                },
-                activities: activities
-            });
-            return toDo.save();
-        })
-        .then(result => {
-            return req.user.clearBucket();
+    const toDoId = req.body.activityId;
+    req.user.addToToDo(toDoId)
+        .then(() => {
+            return req.user.removeFromBucket(toDoId);
         })
         .then(() => {
             res.redirect('dashboard');
@@ -183,44 +149,10 @@ exports.postToDo = (req, res, next) => {
             return next(error);
         });
 };
-// exports.postToDo = (req, res, next) => {
-//     const toDoId = req.body.activityId;
-//     req.user
-//         .populate('bucket.items.activityId')
-//         .execPopulate()
-//         .then(user => {
-//             const activities = user.bucket.items._id;
-//             // map(i => {
-//             //     return i.activityId._doc;
-//             // });
-//             const toDo = new ToDo({
-//                 user: {
-//                     name: req.user.name,
-//                     userId: req.user
-//                 },
-//                 activities: activities
-//             });
-//             return toDo.save();
-//         })
-//         .then(todo => todo.addToToDo(toDoId))
-//         // .then(result => {
-//         //     return req.user.clearBucket();
-//         // })
-//         .then(() => {
-//             res.redirect('dashboard');
-//         })
-//         .catch(err => {
-//             const error = new Error(err);
-//             error.httpStatusCode = 500;
-//             return next(error);
-//         });
-// };
 
 exports.postToDoDelete = (req, res, next) => {
     const toDoId = req.body.toDoId;
-    const activityId = req.body.activityId;
-    ToDo.findById(toDoId)
-        .then(todo => todo.removeToDo(activityId))
+    req.user.removeFromToDo(toDoId)
         .then(result => {
             res.redirect('dashboard');
         })
@@ -234,22 +166,32 @@ exports.postToDoDelete = (req, res, next) => {
 exports.postUserIdea = (req, res, next) => {
     const ideaName = req.body.ideaName;
     const ideaDesc = req.body.ideaDesc;
-    res.redirect('dashboard');
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'myc9forlife@gmail.com',
+            pass: 'CnineForLife'
+        }
+    });
+    const mailOptions = {
+        from: req.body.userEmail,
+        to: 'myc9forlife@gmail.com',
+        subject: 'Activity idea',
+        html: `
+            <h5>Hello, can you please add this activity to the list?</5>
+            <p>Name: ${ideaName}</p>
+            <p>Description: ${ideaDesc}</p>
+          `
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    return res.redirect('activities');
     console.log(ideaDesc + ' ' + ideaName)
 }
-
-// exports.getToDos = (req, res, next) => {
-//     ToDo.find({ 'user.userId': req.user._id })
-//         .then(toDos => {
-//             res.render('pages/mad/dashboard', {
-//                 path: '/dashboard',
-//                 title: 'Dashboard',
-//                 toDos: toDos
-//             });
-//         })
-//         .catch(err => {
-//             const error = new Error(err);
-//             error.httpStatusCode = 500;
-//             return next(error);
-//         });
-// };

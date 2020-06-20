@@ -10,8 +10,8 @@
   <div class="dashboard-image">
     <img class="img-fluid" src="/images/la.jpg" alt="">
     <div class="dashboard-text">
-      <h1>BLESSINGS!</h1>
-      <h5>Some incredible quotes</h5>
+      <h1 class="ble">BLESSINGS!</h1>
+      <h3 class="so">Some incredible quotes</h3>
     </div>
   </div>
   <div class="jumbotron back">
@@ -24,8 +24,8 @@
             <% if (activities.length > 0) { %>
             <% activities.forEach(a => { %>
             <div class="bucket-item-list">
-              <h5><%= a.activityId.title %></h5>
-              <h6>Desc: <%= a.activityId.description %></h6>
+              <h5><b><%= a.activityId.title %></b></h5>
+              <h6><b>Description:</b><br> <%= a.activityId.description %></h6>
               <div class="action-btn">
                 <form action="/mad/bucket-delete-item" method="POST">
                   <input type="hidden" value="<%= a.activityId._id %>" name="activityId">
@@ -34,6 +34,7 @@
                 </form>
                 <div class="centered">
                   <form action="/mad/create-toDo" method="POST">
+                    <input type="hidden" value="<%= a.activityId._id %>" name="activityId">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <button type="submit" class="btn sss">Try</button>
                   </form>
@@ -56,13 +57,12 @@
               <h4>No to-do list yet!</h4>
               <% } else { %>
                 <% toDos.forEach(toDo => { %>
-                  <% toDo.activities.forEach(a => { %>
                     <div class="toDo">
-                      <h5><%= a.title %></h5>
+                      <h5><b><%= toDo.toDoId.title %></b></h5>
+                      <h6><b>Description:</b><br> <%= toDo.toDoId.description %></h6>
                       <div class="action-btn">
                         <form action="/mad/toDo-delete" method="POST">
-                          <input type="hidden" value="<%= a._id %>" name="activityId">
-                          <input type="hidden" value="<%= toDo._id %>" name="toDoId">
+                          <input type="hidden" value="<%= toDo.toDoId._id %>" name="toDoId">
                           <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                           <button class="btn sss" type="submit">Remove</button>
                         </form>
@@ -73,8 +73,7 @@
                           </form>
                         </div>
                       </div>
-                    </div>
-                  <% }); %>
+                    </div><hr>
                 <% }); %>
               <% } %>
             </div>

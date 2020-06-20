@@ -8,7 +8,7 @@ routes
     .get('/', (req, res, next) => {
         // This is the primary index, always handled last. 
         res.render('pages/index', {
-            title: 'MAD App | Home',
+            title: 'C9FL | Home',
             path: '/'
         });
     })
@@ -16,19 +16,19 @@ routes
     //404 Page for pages that are not found
     .use((req, res, next) => {
         res.status(404).render('pages/404', {
-            title: 'MAD App | 404 - Page Not Found',
+            title: 'C9FL | 404 - Page Not Found',
             path: req.url,
             isAuthenticated: req.session.isLoggedIn
         })
     })
 
-    // //500 Page for technical errors
-    // .use((error, req, res, next) => {
-    //     res.status(500).render('pages/500', {
-    //         title: 'Madds App | Minor Issue',
-    //         path: '/500',
-    //         isAuthenticated: req.session.isLoggedIn
-    //     });
-    // });
+    //500 Page for technical errors
+    .use((error, req, res, next) => {
+        res.status(500).render('pages/500', {
+            title: 'C9FL | Minor Issue',
+            path: '/500',
+            isAuthenticated: req.session.isLoggedIn
+        });
+    });
 
 module.exports = routes;

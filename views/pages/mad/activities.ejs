@@ -7,7 +7,7 @@
 
 <body>
     <%- include('../../includes/nav.ejs') %>
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center actBack">
         <div class="container">
             <% if (acts.length > 0) { %>
             <div class="grid">
@@ -19,14 +19,14 @@
                         </h1>
                     </header>
                     <div>
-                        <p>
+                        <p class="actDesc">
                             <%= activity.description %>
                         </p>
                     </div>
                     <div class="card-actions">
                         <form action="/mad/bucket" method="POST">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                            <button class="btn" type="submit">Add to Bucket</button>
+                            <button class="btn add-to-bucket" type="submit">Add to Bucket</button>
                             <input type="hidden" name="activityId" value="<%= activity._id %>">
                         </form>
 
@@ -64,6 +64,7 @@
                                     placeholder="Description"></textarea>
                             </div>
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <input type="hidden" name="userEmail" value="<%= user.email %>">
                             <button type="submit" class="btn btn-success">Send</button>
                         </form>
                     </div>

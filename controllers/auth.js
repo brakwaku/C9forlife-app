@@ -1,20 +1,18 @@
 const crypto = require('crypto');
 
 const bcrypt = require('bcryptjs');
-const nodemailer = require('nodemailer');
-const sendgridTransport = require('nodemailer-sendgrid-transport');
+var nodemailer = require('nodemailer');
 const { validationResult } = require('express-validator/check');
 
 const User = require('../models/user');
 
-const transporter = nodemailer.createTransport(
-  sendgridTransport({
-    auth: {
-      api_key: process.env.sendGrid_key
-    }
-  })
-);
-
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'myc9forlife@gmail.com',
+    pass: 'CnineForLife'
+  }
+});
 
 exports.getLogin = (req, res, next) => {
   let message = req.flash('error');
@@ -25,7 +23,7 @@ exports.getLogin = (req, res, next) => {
   }
   res.render('pages/auth/login', {
     path: '/login',
-    title: 'Login',
+    title: 'C9FL | Login',
     errorMessage: message,
     oldInput: {
       email: '',
@@ -44,7 +42,7 @@ exports.getSignup = (req, res, next) => {
   }
   res.render('pages/auth/signup', {
     path: '/signup',
-    title: 'Signup',
+    title: 'C9FL | Signup',
     errorMessage: message,
     oldInput: {
       email: '',
@@ -63,7 +61,7 @@ exports.postLogin = (req, res, next) => {
   if (!errors.isEmpty()) {
     return res.status(422).render('pages/auth/login', {
       path: '/login',
-      title: 'Login',
+      title: 'C9FL | Login',
       errorMessage: errors.array()[0].msg,
       oldInput: {
         email: email,
@@ -78,7 +76,7 @@ exports.postLogin = (req, res, next) => {
       if (!user) {
         return res.status(422).render('pages/auth/login', {
           path: '/login',
-          title: 'Login',
+          title: 'C9FL | Login',
           errorMessage: 'Invalid email or password.',
           oldInput: {
             email: email,
@@ -100,7 +98,7 @@ exports.postLogin = (req, res, next) => {
           }
           return res.status(422).render('pages/auth/login', {
             path: '/login',
-            title: 'Login',
+            title: 'C9FL | Login',
             errorMessage: 'Invalid email or password.',
             oldInput: {
               email: email,
@@ -140,7 +138,7 @@ exports.postSignup = (req, res, next) => {
     console.log(errors.array());
     return res.status(422).render('pages/auth/signup', {
       path: '/signup',
-      title: 'Signup',
+      title: 'C9FL | Signup',
       errorMessage: errors.array()[0].msg,
       oldInput: {
         firstName: firstName,
@@ -168,11 +166,21 @@ exports.postSignup = (req, res, next) => {
     })
     .then(result => {
       res.redirect('login');
-      return transporter.sendMail({
+
+      const mailOptions = {
+        from: 'myc9forlife@gmail.com',
         to: email,
-        from: 'mad@app.com',
         subject: 'Signup succeeded!',
-        html: '<h1>Hurray!!! <br>You successfully signed up. Congratulations!</h1>'
+        html: `
+            <h2>Hurray!!! <br>You successfully signed up. Congratulations!</h2>
+          `
+      };
+      return transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
       });
     })
     .catch(err => {
@@ -198,7 +206,7 @@ exports.getReset = (req, res, next) => {
   }
   res.render('pages/auth/reset', {
     path: '/reset',
-    title: 'Reset Password',
+    title: 'C9FL | Reset Password',
     errorMessage: message
   });
 };
@@ -222,14 +230,22 @@ exports.postReset = (req, res, next) => {
       })
       .then(result => {
         res.redirect('/');
-        transporter.sendMail({
-          to: req.body.email,
-          from: 'mad@app.com',
-          subject: 'Password reset',
-          html: `
-            <p>You requested a password reset</p>
-            <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</p>
+        const mailOptions = {
+        from: 'myc9forlife@gmail.com',
+        to: req.body.email,
+        subject: 'Password Reset!',
+        html: `
+            <h5>Hello, you requested a password reset</5>
+            <p>Click this <a href="http://localhost:3000/auth/reset/${token}">link</a> to set a new password.</p>
+            <p>PS: This link is only valid for an hour</p>
           `
+        };
+        transporter.sendMail(mailOptions, function (error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
         });
       })
       .catch(err => {
@@ -252,7 +268,7 @@ exports.getNewPassword = (req, res, next) => {
       }
       res.render('pages/auth/new-password', {
         path: '/new-password',
-        title: 'New Password',
+        title: 'C9FL | New Password',
         errorMessage: message,
         userId: user._id.toString(),
         passwordToken: token
@@ -295,7 +311,3 @@ exports.postNewPassword = (req, res, next) => {
       return next(error);
     });
 };
-
-// exports.isAdmin = (req, res, next) => {
-//   const role = req.user.role
-// }

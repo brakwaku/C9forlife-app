@@ -80,14 +80,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 
   .use('/', routes);
 
-  // .use((error, req, res, next) => {
-  //   res.status(500).render('pages/500', {
-  //     pageTitle: 'Madds App | Error!',
-  //     path: '/500',
-  //     isAuthenticated: req.session.isLoggedIn
-  //   });
-  // });
-
 mongoose
   .connect(MONGODB_URL, options)
   .then(result => {

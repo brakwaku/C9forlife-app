@@ -23,6 +23,8 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  resetToken: String,
+  resetTokenExpiration: Date,
   role: {
     type: String,
     required: true
@@ -35,11 +37,52 @@ const userSchema = new Schema({
           ref: 'Activity',
           required: true
         },
-        // quantity: { type: Number, required: true }
+      }
+    ]
+  },
+  toDoList: {
+    toDos: [
+      {
+        toDoId: {
+          type: Schema.Types.ObjectId,
+          ref: 'Activity',
+          required: true
+        }
       }
     ]
   }
 });
+
+userSchema.methods.removeFromToDo = function (toDoId) {
+  const updatedToDoItems = this.toDoList.toDos.filter(toDo => {
+    return toDo.toDoId.toString() !== toDoId.toString();
+  });
+  this.toDoList.toDos = updatedToDoItems;
+  return this.save();
+};
+
+userSchema.methods.addToToDo = function (activity) {
+  const toDoActivityIndex = this.toDoList.toDos.findIndex(cp => {
+    return cp.toDoId.toString() === activity.toString();
+  });
+  let newQuantity = 1;
+  const updatedToDoItems = [...this.toDoList.toDos];
+
+  if (toDoActivityIndex >= 0) {
+    newQuantity = this.toDoList.toDos[toDoActivityIndex].quantity + 1;
+    updatedToDoItems[toDoActivityIndex].quantity = newQuantity;
+  } else {
+    updatedToDoItems.push({
+      toDoId: activity,
+      quantity: newQuantity
+    });
+  }
+  const updatedToDo = {
+    toDos: updatedToDoItems
+  };
+  this.toDoList = updatedToDo;
+  return this.save();
+};
 
 userSchema.methods.addToBucket = function (activity) {
   const bucketActivityIndex = this.bucket.items.findIndex(cp => {

@@ -6,7 +6,7 @@ const Activity = require('../models/activity');
 
 exports.getAddActivity = (req, res, next) => {
   res.render('../views/pages/admin/edit-activity', {
-    title: 'Add Activity',
+    title: 'C9FL | Add Activity',
     path: '/admin/add-activity',
     editing: false,
     hasError: false,
@@ -23,7 +23,7 @@ exports.postAddActivity = (req, res, next) => {
   if (!errors.isEmpty()) {
     console.log(errors.array());
     return res.status(422).render('../views/pages/admin/edit-activity', {
-      title: 'Add Activity',
+      title: 'C9FL | Add Activity',
       path: '/admin/add-activity',
       editing: false,
       hasError: true,
@@ -44,7 +44,6 @@ exports.postAddActivity = (req, res, next) => {
   activity
     .save()
     .then(result => {
-      // console.log(result);
       console.log('Created Activity');
       res.redirect('/admin/activities');
     })
@@ -67,7 +66,7 @@ exports.getEditActivity = (req, res, next) => {
         return res.redirect('/admin/activities');
       }
       res.render('pages/admin/edit-activity', {
-        title: 'Edit Activity',
+        title: 'C9FL | Edit Activity',
         path: '/admin/edit-activity',
         editing: editMode,
         activity: activity,
@@ -92,7 +91,7 @@ exports.postEditActivity = (req, res, next) => {
 
   if (!errors.isEmpty()) {
     return res.status(422).render('../views/pages/admin/edit-activity', {
-      title: 'Edit Activity',
+      title: 'C9FL | Edit Activity',
       path: '/admin/edit-activity',
       editing: true,
       hasError: true,
@@ -108,7 +107,7 @@ exports.postEditActivity = (req, res, next) => {
 
   Activity.findById(actId)
     .then(activity => {
-      if (activity.actId.toString() !== req.user._id.toString()) {
+      if (activity.userId.toString() !== req.user._id.toString()) {
         return res.redirect('/admin/activities');
       }
       activity.title = updatedTitle;
@@ -131,7 +130,7 @@ exports.getActivities = (req, res, next) => {
       console.log(activities);
       res.render('pages/admin/activities', {
         acts: activities,
-        title: 'Admin Activities',
+        title: 'C9FL | Admin',
         path: '/adminActivities'
       });
     })
@@ -144,7 +143,7 @@ exports.getActivities = (req, res, next) => {
 
 exports.postDeleteActivity = (req, res, next) => {
   const actId = req.body.activityId;
-  Acivity.deleteOne({ _id: actId, userId: req.user._id })
+  Activity.deleteOne({ _id: actId, userId: req.user._id })
     .then(() => {
       console.log('DESTROYED ACTIVITY');
       res.redirect('/admin/activities');

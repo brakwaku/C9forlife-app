@@ -2,12 +2,40 @@
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
 html, body {
-  background-image: url('/images/flowers.jpg');
+  background-image: url('/images/formdef.jpg');
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 100%;
+}
+
+.loginBack {
+  background-image: url('/images/flowers.jpg');
+  background-attachment: fixed;
+  /* Full height */
+  height: auto;
+  /* Center and scale the image nicely */
+  width: 100;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding-bottom: 80px;
+}
+
+.signUpBack {
+  background-image: url('/images/tub.jpg');
+  background-attachment: fixed;
+  /* Full height */
+  height: auto;
+  /* Center and scale the image nicely */
+  width: 100;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding-bottom: 80px;
 }
 
 .container {
@@ -21,6 +49,10 @@ html, body {
   margin-bottom: auto;
   width: 400px;
   background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.sign-card {
+  height: 470px;
 }
 
 .social_icon span {
