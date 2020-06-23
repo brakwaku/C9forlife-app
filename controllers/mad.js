@@ -117,15 +117,21 @@ exports.getDashboard = (req, res, next) => {
     req.user
         .populate('bucket.items.activityId')
         .populate('toDoList.toDos.toDoId')
+        .populate('completed.comps.compId')
+        .populate('archive.archs.archId')
         .execPopulate()
         .then(user => {
-            const activities = user.bucket.items;
+            //const activities = user.bucket.items;
             res.render('pages/mad/dashboard', {
                 path: '/dashboard',
                 title: 'C9FL | Dashboard',
                 toDos: user.toDoList.toDos,
-                activities: activities
+                activities: user.bucket.items,
+                comps: user.completed.comps,
+                archs: user.archive.archs
             });
+            console.log('Comps:' + user.completed.comps)
+            console.log('Archs:' + user.archive.archs)
         })
         .catch(err => {
             const error = new Error(err);
@@ -163,6 +169,38 @@ exports.postToDoDelete = (req, res, next) => {
         });
 }
 
+exports.postCompleted = (req, res, next) => {
+    const compId = req.body.toDoId;
+    req.user.addToCompleted(compId)
+        .then(() => {
+            return req.user.removeFromToDo(compId);
+        })
+        .then(() => {
+            res.redirect('dashboard');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.postArchive = (req, res, next) => {
+    const archId = req.body.compId;
+    req.user.addToArchive(archId)
+        .then(() => {
+            return req.user.removeFromCompleted(archId);
+        })
+        .then(() => {
+            res.redirect('dashboard');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
 exports.postUserIdea = (req, res, next) => {
     const ideaName = req.body.ideaName;
     const ideaDesc = req.body.ideaDesc;
@@ -194,4 +232,22 @@ exports.postUserIdea = (req, res, next) => {
 
     return res.redirect('activities');
     console.log(ideaDesc + ' ' + ideaName)
+}
+
+exports.postUserArchives = (req, res, next) => {
+    req.user
+        .populate('archive.archs.archId')
+        .execPopulate()
+        .then(user => {
+            res.render('pages/mad/archives', {
+                path: '/archives',
+                title: 'C9FL | Archives',
+                archs: user.archive.archs
+            });
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
 }

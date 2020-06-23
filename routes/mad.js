@@ -14,6 +14,9 @@ router.get('/motivation', isAuth, madController.getMotivation)
 router.post('/bucket', isAuth, madController.postBucket)
 router.post('/create-toDo', isAuth, madController.postToDo)
 router.post('/toDo-delete', isAuth, madController.postToDoDelete)
+router.post('/completed', isAuth, madController.postCompleted)
+router.post('/archive', isAuth, madController.postArchive)
+router.post('/archives', isAuth, madController.postUserArchives)
 router.post('/user-idea', isAuth, madController.postUserIdea)
 
 module.exports = router;

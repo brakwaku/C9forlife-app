@@ -8,10 +8,15 @@
 <body>
   <%- include('../../includes/nav.ejs') %>
   <div class="dashboard-image">
-    <img class="img-fluid" src="/images/la.jpg" alt="">
-    <div class="dashboard-text">
-      <h1 class="ble">BLESSINGS!</h1>
-      <h3 class="so">Some incredible quotes</h3>
+    <h1>DASHBOARD</h1>
+    <h3>Some incredible quote here</h3>
+    <div class="user-rank">
+      <h2>Badges</h2>
+      <span class="fa fa-star <%= comps.length >= 1 || archs.length >= 1 ? 'checked' : ''%>"></span>
+      <span class="fa fa-star <%= comps.length >= 4 || archs.length >= 4 ? 'checked' : ''%>"></span>
+      <span class="fa fa-star <%= comps.length >= 8 || archs.length >= 8 ? 'checked' : ''%>"></span>
+      <span class="fa fa-star <%= comps.length >= 12 || archs.length >= 12 ? 'checked' : ''%>"></span>
+      <span class="fa fa-star <%= comps.length >= 16 || archs.length >= 16 ? 'checked' : ''%>"></span>
     </div>
   </div>
   <div class="jumbotron back">
@@ -49,39 +54,72 @@
           </div>
         </div>
         <!--TO-DO LIST-->
-        <div class="col-sm">
+        <div class="col-sm mid-col">
           <h3 class="col-head">To-do list</h3>
           <div class="next-con">
             <div class="toDo-item-list">
               <% if (toDos.length <= 0) { %>
               <h4>No to-do list yet!</h4>
               <% } else { %>
-                <% toDos.forEach(toDo => { %>
-                    <div class="toDo">
-                      <h5><b><%= toDo.toDoId.title %></b></h5>
-                      <h6><b>Description:</b><br> <%= toDo.toDoId.description %></h6>
-                      <div class="action-btn">
-                        <form action="/mad/toDo-delete" method="POST">
-                          <input type="hidden" value="<%= toDo.toDoId._id %>" name="toDoId">
-                          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                          <button class="btn sss" type="submit">Remove</button>
-                        </form>
-                        <div class="centered">
-                          <form action="/mad/create-report" method="POST">
-                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                            <button type="submit" class="btn sss">Done</button>
-                          </form>
-                        </div>
-                      </div>
-                    </div><hr>
-                <% }); %>
+              <% toDos.forEach(toDo => { %>
+              <div class="toDo">
+                <h5><b><%= toDo.toDoId.title %></b></h5>
+                <h6><b>Description:</b><br> <%= toDo.toDoId.description %></h6>
+                <div class="action-btn">
+                  <form action="/mad/toDo-delete" method="POST">
+                    <input type="hidden" value="<%= toDo.toDoId._id %>" name="toDoId">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button class="btn sss" type="submit">Remove</button>
+                  </form>
+                  <div class="centered">
+                    <form action="/mad/completed" method="POST">
+                      <input type="hidden" value="<%= toDo.toDoId._id %>" name="toDoId">
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                      <button type="submit" class="btn sss">Done</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <% }); %>
               <% } %>
             </div>
           </div>
         </div>
-        <!--REPORTS-->
+        <!--COMPLETED ACTIVITIES-->
         <div class="col-sm">
-          <h3 class="col-head">Reports</h3>
+          <h3 class="col-head">Completed Activities</h3>
+          <div class="next-con">
+            <div class="toDo-item-list">
+              <% if (comps.length <= 0) { %>
+              <h4>No activity completed yet!</h4>
+              <% } else { %>
+              <% comps.forEach(comp => { %>
+              <div class="toDo">
+                <h5><b><%= comp.compId.title %></b></h5>
+                <!-- <h6><b>Description:</b><br> <%= comp.compId.description %></h6> -->
+                <div class="action-btn">
+                  <!-- <form action="/mad/toDo-delete" method="POST">
+                    <input type="hidden" value="<%= comp.compId._id %>" name="toDoId">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button class="btn sss" type="submit">Remove</button>
+                  </form> -->
+                  <form action="/mad/archive" method="POST">
+                    <input type="hidden" value="<%= comp.compId._id %>" name="compId">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" class="btn sss">Archive</button>
+                  </form>
+                </div>
+              </div>
+              <hr>
+              <% }); %>
+              <% } %>
+            </div>
+          </div>
+          <form action="/mad/archives" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn btn-success">My Archives</button>
+          </form><br>
         </div>
       </div>
     </div>

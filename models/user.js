@@ -50,16 +50,30 @@ const userSchema = new Schema({
         }
       }
     ]
+  },
+  completed: {
+    comps: [
+      {
+        compId: {
+          type: Schema.Types.ObjectId,
+          ref: 'Activity',
+          required: true
+        }
+      }
+    ]
+  },
+  archive: {
+    archs: [
+      {
+        archId: {
+          type: Schema.Types.ObjectId,
+          ref: 'Activity',
+          required: true
+        }
+      }
+    ]
   }
 });
-
-userSchema.methods.removeFromToDo = function (toDoId) {
-  const updatedToDoItems = this.toDoList.toDos.filter(toDo => {
-    return toDo.toDoId.toString() !== toDoId.toString();
-  });
-  this.toDoList.toDos = updatedToDoItems;
-  return this.save();
-};
 
 userSchema.methods.addToToDo = function (activity) {
   const toDoActivityIndex = this.toDoList.toDos.findIndex(cp => {
@@ -81,6 +95,68 @@ userSchema.methods.addToToDo = function (activity) {
     toDos: updatedToDoItems
   };
   this.toDoList = updatedToDo;
+  return this.save();
+};
+
+userSchema.methods.removeFromToDo = function (toDoId) {
+  const updatedToDoItems = this.toDoList.toDos.filter(toDo => {
+    return toDo.toDoId.toString() !== toDoId.toString();
+  });
+  this.toDoList.toDos = updatedToDoItems;
+  return this.save();
+};
+
+userSchema.methods.addToCompleted = function (activityId) {
+  const compActivityIndex = this.completed.comps.findIndex(cp => {
+    return cp.compId.toString() === activityId.toString();
+  });
+  let newQuantity = 1;
+  const updatedCompItems = [...this.completed.comps];
+
+  if (compActivityIndex >= 0) {
+    newQuantity = this.completed.comps[compActivityIndex].quantity + 1;
+    updatedCompItems[compActivityIndex].quantity = newQuantity;
+  } else {
+    updatedCompItems.push({
+      compId: activityId,
+      quantity: newQuantity
+    });
+  }
+  const updatedComp = {
+    comps: updatedCompItems
+  };
+  this.completed = updatedComp;
+  return this.save();
+};
+
+userSchema.methods.removeFromCompleted = function (compId) {
+  const updatedCompItems = this.completed.comps.filter(comp => {
+    return comp.compId.toString() !== compId.toString();
+  });
+  this.completed.comps = updatedCompItems;
+  return this.save();
+};
+
+userSchema.methods.addToArchive = function (activity) {
+  const archActivityIndex = this.archive.archs.findIndex(cp => {
+    return cp.archId.toString() === activity.toString();
+  });
+  let newQuantity = 1;
+  const updatedArchItems = [...this.archive.archs];
+
+  if (archActivityIndex >= 0) {
+    newQuantity = this.archive.archs[archActivityIndex].quantity + 1;
+    updatedArchItems[archActivityIndex].quantity = newQuantity;
+  } else {
+    updatedArchItems.push({
+      archId: activity,
+      quantity: newQuantity
+    });
+  }
+  const updatedArch = {
+    archs: updatedArchItems
+  };
+  this.archive = updatedArch;
   return this.save();
 };
 
