@@ -357,3 +357,38 @@ Modal Styling
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
+/**************************************
+* Motivation Styling
+****************************************/
+.mo-top {
+  background-image: url('/images/you-got-this-lighted-signage.jpg');
+  max-height: 400px;
+  min-height: 350px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.moCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.moCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.moCardTxt {
+  padding: 2px 16px;
+}
+
+/* .moCard img {
+  border-radius: 5px 5px 0 0;
+  width: 250px;
+  height: 250px;
+} */

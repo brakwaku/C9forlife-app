@@ -32,3 +32,25 @@ function appendMessage(message) {
   messageElement.innerText = message
   messageContainer.append(messageElement)
 }
+
+/*
+
+  <!-- <head>
+    <%- include('../../includes/header.ejs') %>
+    <script defer src="http://localhost:PORT/socket.io/socket.io.js"></script>
+    <script defer src="/scripts/chat.js"></script>
+  </head>
+  
+  <body>
+    <%- include('../../includes/nav.ejs') %>
+    <div class="jumbotron text-center"></div>
+      <div class="container" id="message-container">
+        <form id="send-container">
+          <input type="text" id="message-input">
+          <button type="submit" id="send-button">Send</button>
+        </form>
+      <button class="btn btn-danger">Get Help</button>
+    </div>
+    <%- include('../../includes/end.ejs') %> -->
+
+*/
