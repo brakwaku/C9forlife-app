@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.get('/dashboard', isAuth, madController.getDashboard)
 router.get('/contact', madController.getContact)
+router.get('/about', madController.getAbout)
 router.get('/activities', isAuth, madController.getActivities)
 router.get('/motivation', isAuth, madController.getMotivation)
 router.post('/bucket', isAuth, madController.postBucket)

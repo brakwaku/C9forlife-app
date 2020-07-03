@@ -392,3 +392,59 @@ Modal Styling
   width: 250px;
   height: 250px;
 } */
+
+/**************************************
+* About Us Styling
+****************************************/
+.about-us {
+  background-image: url('/images/fam.jpg');
+  background-attachment: fixed;
+  /* Full height */
+  height: auto;
+  /* Center and scale the image nicely */
+  width: 100;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding-bottom: 80px;
+}
+
+#we-are-family {
+  font-size: 10vw;
+  font-weight: bold;
+  text-align: right;
+  color: rgb(9, 175, 180);
+}
+
+.about-place {
+  background-color: #2d2d305e;
+  padding: 5px;
+  max-width: 85%;
+  margin: auto;
+  border-radius: 10px;
+}
+
+/**************************************
+* Contacts Styling
+****************************************/
+.contacts {
+  background-image: url('/images/con.jpg');
+  background-attachment: fixed;
+  /* Full height */
+  height: auto;
+  /* Center and scale the image nicely */
+  width: 100;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding-bottom: 80px;
+}
+
+#contacts {
+  font-size: 10vw;
+  font-weight: bold;
+  text-align: right;
+  color: rgb(9, 175, 180);
+}

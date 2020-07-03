@@ -10,6 +10,13 @@ exports.getContact = (req, res, next) => {
     });
 };
 
+exports.getAbout = (req, res, next) => {
+    return res.render('pages/mad/about', {
+        title: 'C9FL | About Us',
+        path: '/about'
+    });
+};
+
 exports.getMotivation = (req, res, next) => {
     return res.render('pages/mad/motivation', {
         title: 'C9FL | Motivation',
