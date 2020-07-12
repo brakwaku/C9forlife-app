@@ -81,6 +81,16 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <div></div>
+  
+  <div class="jumbotron text-center chatt"></div>
+  <div class="container" id="message-container">
+    <form id="send-container">
+      <input type="text" id="message-input">
+      <button type="submit" id="send-button">Send</button>
+    </form>
+  </div>
   <% } %>
+
+  <script defer src="/socket.io/socket.io.js"></script>
+  <script defer src="/scripts/chat.js"></script>
   <%- include('../includes/end.ejs') %>

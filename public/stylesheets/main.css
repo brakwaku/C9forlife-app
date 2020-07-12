@@ -390,12 +390,12 @@ Modal Styling
 /*
 * Styling for chat
 */
-/* body {
+.chatt {
   padding: 0;
   margin: 0;
   display: flex;
   justify-content: center;
-} */
+}
 
 #message-container {
   width: 80%;

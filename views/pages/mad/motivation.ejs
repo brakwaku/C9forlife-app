@@ -3,9 +3,6 @@
 
 <head>
   <%- include('../../includes/header.ejs') %>
-
-  <script defer src="/socket.io/socket.io.js"></script>
-  <script defer src="/scripts/chat.js"></script>
 </head>
 
 <body>
@@ -97,12 +94,4 @@
     </div>
   </div>
 
-  <div class="jumbotron text-center"></div>
-  <div class="container" id="message-container">
-    <form id="send-container">
-      <input type="text" id="message-input">
-      <button type="submit" id="send-button">Send</button>
-    </form>
-    <button class="btn btn-danger">Get Help</button>
-  </div>
   <%- include('../../includes/end.ejs') %>
