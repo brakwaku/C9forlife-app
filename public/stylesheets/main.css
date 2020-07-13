@@ -387,12 +387,19 @@ Modal Styling
   padding: 2px 16px;
 }
 
+/* .moCard img {
+  border-radius: 5px 5px 0 0;
+  width: 250px;
+  height: 250px;
+} */
+
 /*
 * Styling for chat
 */
-.chatt {
+/* .chatt {
   padding: 0;
   margin: 0;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
 }
@@ -412,7 +419,7 @@ Modal Styling
 }
 
 #send-container {
-  position: fixed;
+  position: relative;
   padding-bottom: 30px;
   bottom: 0;
   background-color: white;
@@ -423,12 +430,6 @@ Modal Styling
 
 #message-input {
   flex-grow: 1;
-}
-
-/* .moCard img {
-  border-radius: 5px 5px 0 0;
-  width: 250px;
-  height: 250px;
 } */
 
 /**************************************

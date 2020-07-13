@@ -12,11 +12,11 @@
     <h3>Some incredible quote here</h3>
     <div class="user-rank">
       <h2>Badges</h2>
-      <span class="fa fa-star <%= comps.length >= 1 || archs.length >= 1 ? 'checked' : ''%>"></span>
-      <span class="fa fa-star <%= comps.length >= 4 || archs.length >= 4 ? 'checked' : ''%>"></span>
-      <span class="fa fa-star <%= comps.length >= 8 || archs.length >= 8 ? 'checked' : ''%>"></span>
-      <span class="fa fa-star <%= comps.length >= 12 || archs.length >= 12 ? 'checked' : ''%>"></span>
-      <span class="fa fa-star <%= comps.length >= 16 || archs.length >= 16 ? 'checked' : ''%>"></span>
+      <span class="fa fa-star <%= comps.length >= 1 || archs.length >= 1 || (comps.length + archs.length >=1) ? 'checked' : ''%>"></span>
+      <span class="fa fa-star <%= comps.length >= 4 || archs.length >= 4 || (comps.length + archs.length >= 4) ? 'checked' : ''%>"></span>
+      <span class="fa fa-star <%= comps.length >= 8 || archs.length >= 8 || (comps.length + archs.length >= 8) ? 'checked' : ''%>"></span>
+      <span class="fa fa-star <%= comps.length >= 12 || archs.length >= 12 || (comps.length + archs.length >= 12) ? 'checked' : ''%>"></span>
+      <span class="fa fa-star <%= comps.length >= 16 || archs.length >= 16 || (comps.length + archs.length >= 16) ? 'checked' : ''%>"></span>
     </div>
   </div>
   <div class="jumbotron back">
