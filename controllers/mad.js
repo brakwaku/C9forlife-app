@@ -76,13 +76,14 @@ exports.getIndex = (req, res, next) => {
 
 exports.postBucket = (req, res, next) => {
     const actId = req.body.activityId;
+    console.log('Activity Id: ' + actId);
     Activity.findById(actId)
         .then(activity => {
             return req.user.addToBucket(activity);
         })
         .then(result => {
             console.log('Postbucket result: ' + result);
-            res.redirect('activities');
+            res.status(200).send(result);
         })
         .catch(err => {
             const error = new Error(err);
@@ -237,8 +238,8 @@ exports.postUserIdea = (req, res, next) => {
         }
     });
 
-    return res.redirect('activities');
     console.log(ideaDesc + ' ' + ideaName)
+    return res.status(200).send();
 }
 
 exports.postUserArchives = (req, res, next) => {

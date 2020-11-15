@@ -119,34 +119,6 @@ body {
   margin-left: 68vw;
 }
 
-/******************************
- Admin activities classes
- ******************************/
- .card-control {
-   width: 90%;
-   background-color: #a9e4eebb;
-   border-radius: 10px;
-   margin: auto;
-   margin-bottom: 10px;
- }
-.card-actions {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.card-actions a:hover {
-  color: rgb(110, 110, 110);
-}
-
-.card-actions form>button:hover {
-  color: rgb(110, 110, 110);
-}
-
-.card_header {
-  background-color: #86deeebb;
-  border-radius: 10px;
-}
-
 /**************************************
 Modal Styling
 ****************************************/
@@ -169,34 +141,6 @@ Modal Styling
   background-image: url('/images/loginii.jpg');
 }
 
-/**************************************
-* User activities Styling
-****************************************/
-.actBack {
-  background-image: url('/images/loginii.jpg');
-  background-attachment: fixed;
-  /* Full height */
-  height: auto;
-  /* Center and scale the image nicely */
-  width: 100;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-  padding-bottom: 80px;
-}
-
-.activity-title {
-  font-weight: bold;
-}
-
-.add-to-bucket {
-  color: #1165BD;
-}
-
-.actDesc {
-  color: #2d2d30;
-}
 
 /**************************************
 * User Archives Styling

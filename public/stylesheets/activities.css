@@ -1,0 +1,92 @@
+/******************************
+ * Admin activities classes
+ ******************************/
+.act-grid-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card-control {
+    width: 48%;
+    background-color: #a9e4eebb;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+    transition: all 1.4s;
+}
+
+.card-control:hover {
+    transform: scale(1.3);
+    background-color: #a9e4ee;
+}
+
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-actions a:hover {
+    color: rgb(110, 110, 110);
+}
+
+.card-actions form>button:hover {
+    color: rgb(110, 110, 110);
+}
+
+.card_header {
+    background-color: #86deeebb;
+    border-radius: 10px;
+}
+
+/******************************
+ * User activities classes
+ ******************************/
+
+.actBack {
+    background-image: url('/images/loginii.jpg');
+    background-attachment: fixed;
+    /* Full height */
+    height: auto;
+    /* Center and scale the image nicely */
+    width: 100;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding-bottom: 80px;
+}
+
+.activity-title {
+    font-weight: bold;
+}
+
+.add-to-bucket {
+    color: #1165BD;
+}
+
+.actDesc {
+    color: #2d2d30;
+}
+
+.alert {
+    display: none;
+    padding: 20px;
+    background-color: #25B396;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}

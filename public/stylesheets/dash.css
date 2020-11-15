@@ -13,7 +13,7 @@
     grid-template-columns: 18% auto 18%;
 }
 
-.dash-col2 h1{
+.dash-col2 h1 {
     text-align: center;
     font-size: 8vw;
     font-weight: bolder;
@@ -27,9 +27,9 @@
     color: orange;
 }
 
-.dash-col3 h2 {
+.dash-col3 h5 {
     color: white;
-    margin-top: 85%;
+    margin-top: 95%;
 }
 
 .checked {
@@ -40,6 +40,7 @@
     display: grid;
     grid-template-columns: 33.5% 33.5% 33.5%;
     padding: 15px;
+    margin-bottom: 30px;
 }
 
 .main-grid-item {
@@ -115,7 +116,7 @@
 
 .col-head {
     background-color: #eeeeee;
-    /*background-color: orange;*/
+    text-align: center;
     border-radius: 0px 0px 7px 7px;
     font-weight: bold;
     padding: 5px;
@@ -137,4 +138,29 @@
 
 .sss {
     color: #128fa5;
+}
+
+@media only screen and (max-width: 766px) {
+    .main-header-user {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 667px) {
+    .dash-col2 h1 {
+        margin-top: 30%;
+    }
+    .main-grid-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .main-grid-item {
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width: 574px) {
+    .main-header-user {
+        display: block;
+    }
 }
