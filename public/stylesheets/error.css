@@ -25,3 +25,9 @@ body, html {
     transform: translate(-50%, -50%);
     color: white;
 }
+
+.not-found {
+    text-align: center;
+    color: #1165BD;
+    font-size: 9rem;
+  }
