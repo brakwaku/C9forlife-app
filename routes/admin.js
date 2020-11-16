@@ -9,7 +9,7 @@ const isAuth = require('../middleware/is-auth');
 const router = express.Router();
 
 // /admin/add-activity => GET
-router.get('/add-activity', isAuth, adminController.getAddActivity);
+// router.get('/add-activity', isAuth, adminController.getAddActivity);
 
 // /admin/activities => GET
 router.get('/activities', isAuth, adminController.getActivities);
@@ -22,9 +22,10 @@ router.post('/add-activity',
             .isLength({ min: 3 })
             .trim(),
         body('description')
-            .isLength({ min: 5, max: 4000 })
+            .isLength({ min: 3, max: 4000 })
             .trim()
-    ], isAuth,
+    ], 
+    isAuth,
     adminController.postAddActivity
 );
 
@@ -44,6 +45,9 @@ router.post('/edit-activity',
 );
 
 router.post('/delete-activity', isAuth, adminController.postDeleteActivity);
+
+//POST deleteUser/:userId endpoint => /admin/deleteUser/:userId
+router.post('/deleteUser/:userId', isAuth, adminController.deleteUser);
 
 
 module.exports = router;
