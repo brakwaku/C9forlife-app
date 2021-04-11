@@ -177,5 +177,3 @@ mongoose
 //     delete chatUsers[socket.id]
 //   })
 // })
-
-// Useless
