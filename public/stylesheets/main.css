@@ -12,10 +12,6 @@
   padding-bottom: 80px;
 }
 
-@media (max-width: 480px) {
-  
-}
-
 .navbar {
   font-family: Montserrat, sans-serif;
   margin-bottom: 0;
@@ -113,7 +109,7 @@ body {
 }
 
 .card {
-  background-color: rgba(144, 238, 144, 0.349);
+  background-color: #128fa58c;
   outline: none;
   border-radius: 10px;
   color: white;
