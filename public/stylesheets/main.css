@@ -162,6 +162,10 @@ Modal Styling
   transform: translate(-50%, -50%);
 }
 
+.archive-item-list {
+  min-height: 60vh;
+}
+
 /**************************************
 * Motivation Styling
 ****************************************/
@@ -301,5 +305,10 @@ Modal Styling
 
   .person-card > img {
     width: 100%;
+  }
+  
+  .archive-pic h3 {
+    color: white;
+    font-size: 4rem;
   }
 }
