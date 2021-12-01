@@ -144,6 +144,23 @@
     .main-header-user {
         display: none;
     }
+
+    .dashboard-image {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dash-col2 h3 {
+        font-size: 1rem;
+    }
+
+    .dash-col3 h5 {
+        margin-top: .5rem;
+    }
+
+    .dash-col3 {
+        padding-left: 2rem;
+    }
 }
 
 @media only screen and (max-width: 667px) {
