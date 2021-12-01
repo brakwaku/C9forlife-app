@@ -229,6 +229,38 @@ Modal Styling
   border-radius: 10px;
 }
 
+.people-like-you-cointainer h2 {
+  text-align: center;
+  padding: 1rem 0 0 0;
+  font-weight: bolder;
+  color: white;
+}
+
+.people-like-you {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 2rem 1rem 2rem;
+}
+
+.person-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: 13vw;
+  margin: 2rem auto 2rem auto;
+}
+
+.person-card > img {
+  border-radius: 10px;
+  width: 13vw;
+}
+
+.person-card > p {
+  padding: .5rem;
+  color: white;
+}
+
 /**************************************
 * Contacts Styling
 ****************************************/
@@ -256,5 +288,18 @@ Modal Styling
 @media only screen and (max-width: 766px) {
   .get-help {
     margin-left: 0;
+  }
+
+  .people-like-you {
+      flex-direction: column;
+      gap: 0rem;
+  }
+
+  .person-card {
+    width: 100%;
+  }
+
+  .person-card > img {
+    width: 100%;
   }
 }
