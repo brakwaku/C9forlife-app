@@ -265,16 +265,16 @@ Modal Styling
 * Contacts Styling
 ****************************************/
 .contacts {
-  background-image: url('/images/con.jpg');
-  background-attachment: fixed;
+  /* background-image: url('/images/con.jpg');
+  background-attachment: fixed; */
   /* Full height */
-  height: auto;
+  height: 80vh;
   /* Center and scale the image nicely */
-  width: 100;
+  /* width: 100;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
+  background-size: cover; */
+  color: rgb(41, 39, 39);
   padding-bottom: 80px;
 }
 
