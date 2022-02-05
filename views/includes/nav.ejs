@@ -16,7 +16,7 @@
         <% if (isAuthenticated) { %>
         <a class="nav-item nav-link <%= path === '/dashboard' ? 'active' : ''%>" href="/mad/dashboard">DASHBOARD</a>
         <a class="nav-item nav-link <%= path === '/activities' ? 'active' : ''%>" href="/mad/activities">ACTIVITIES</a>
-        <% if (user.role === 'admin') { %>
+        <% if (user.isAdmin) { %>
         <a class="nav-item nav-link <%= path === '/adminActivities' ? 'active' : ''%>" href="/admin/activities">ADMIN</a>
         <% } %>
         <a class="nav-item nav-link <%= path === '/motivation' ? 'active' : ''%>" href="/mad/motivation">MOTIVATION</a>
