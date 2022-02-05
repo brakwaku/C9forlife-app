@@ -124,13 +124,13 @@ exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   const roleNumber = req.body.roleNumber;
-  let role;
+  let isAdmin;
 
   //Logic to set roles
   if (roleNumber === 'madds') {
-    role = 'admin';
+    isAdmin = true;
   } else {
-    role = 'member';
+    isAdmin = false;
   }
 
   const errors = validationResult(req);
@@ -159,7 +159,7 @@ exports.postSignup = (req, res, next) => {
         name: firstName + ' ' + lastName,
         email: email,
         password: hashedPassword,
-        role: role,
+        isAdmin: isAdmin,
         bucket: { items: [] }
       });
       return user.save();
